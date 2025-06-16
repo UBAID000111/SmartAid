@@ -55,4 +55,5 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     implementation("com.google.firebase:firebase-auth:23.2.1")
     implementation("com.google.firebase:firebase-auth-ktx:23.2.1")
+    implementation("com.airbnb.android:lottie:6.1.0")
 }

@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.smartaid.MainActivity
 import com.example.smartaid.R
+import com.example.smartaid.bmi.BMIInputActivity
 
 class HomeActivity : AppCompatActivity() {
 
@@ -39,5 +40,9 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        bmiChecker.setOnClickListener {
+            val intent2 = Intent(this, BMIInputActivity::class.java)
+            startActivity(intent2)
+        }
     }
 }
