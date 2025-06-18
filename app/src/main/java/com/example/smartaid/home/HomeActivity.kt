@@ -11,6 +11,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.smartaid.MainActivity
 import com.example.smartaid.R
 import com.example.smartaid.bmi.BMIInputActivity
+import com.example.smartaid.emergency.EmergencyContactActivity
+import com.example.smartaid.medicine.MedicineReminderActivity
 
 class HomeActivity : AppCompatActivity() {
 
@@ -36,13 +38,28 @@ class HomeActivity : AppCompatActivity() {
         emergencyField = findViewById(R.id.emergency)
 
         chatbotRedirect.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            val intent3 = Intent(this, MainActivity::class.java)
+            startActivity(intent3)
         }
 
         bmiChecker.setOnClickListener {
             val intent2 = Intent(this, BMIInputActivity::class.java)
             startActivity(intent2)
+        }
+
+        symptomChecker.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("symptomMessage", "I am feeling low, I have some symptoms.")
+            startActivity(intent)
+        }
+        medicineReminder.setOnClickListener {
+            val intent4 = Intent(this, MedicineReminderActivity::class.java)
+            startActivity(intent4)
+        }
+
+        emergencyField.setOnClickListener {
+            val intent5 = Intent(this, EmergencyContactActivity::class.java)
+            startActivity(intent5)
         }
     }
 }

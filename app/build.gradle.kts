@@ -47,6 +47,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth)
+    implementation(libs.androidx.leanback)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -56,4 +57,6 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:23.2.1")
     implementation("com.google.firebase:firebase-auth-ktx:23.2.1")
     implementation("com.airbnb.android:lottie:6.1.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("androidx.core:core:1.16.0")
 }

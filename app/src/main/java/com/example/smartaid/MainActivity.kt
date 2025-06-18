@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.example.smartaid.home.HomeActivity
 import com.example.smartaid.chatbot.ChatMessage
 import com.example.smartaid.chatbot.ChatRequest
 import com.example.smartaid.chatbot.ChatCompletionResponse
@@ -37,6 +38,8 @@ class MainActivity : AppCompatActivity() {
         sendButton = findViewById(R.id.sendButton)
         progressBar = findViewById(R.id.progressBar)
         recyclerView = findViewById(R.id.recyclerView)
+
+        val symptomMessage = intent.getStringExtra("symptomMessage")
 
         messageAdapter = MessageAdapter(messages)
         recyclerView.adapter = messageAdapter
@@ -68,6 +71,10 @@ class MainActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Please enter a message", Toast.LENGTH_SHORT).show()
             }
+        }
+        if (!symptomMessage.isNullOrEmpty()){
+            messages.add(Message(symptomMessage, isUser = true))
+            messageAdapter.notifyDataSetChanged()
         }
     }
 
