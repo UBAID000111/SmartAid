@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_main2"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="70dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blood Pressure Monitor"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="28dp"/>
+
+
+        <EditText
+            android:id="@+id/bpSys1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Calculated Systolic BP (morning) typically 120"
+            android:inputType="numberDecimal"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/bpDias1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Calculated Diastolic BP (morning) typically 80"
+            android:inputType="numberDecimal"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/bpSys2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="Calculated Systolic BP (evening) typically 120"
+            android:inputType="numberDecimal"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/bpDias2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Calculated Diastolic BP (evening) typically 80"
+            android:inputType="numberDecimal"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/bpSys3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="Calculated Systolic BP (night) typically 120"
+            android:inputType="numberDecimal"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/bpDias3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Calculated Diastolic BP (night) typically 80"
+            android:inputType="numberDecimal"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"/>
+
+
+
+        <Button
+            android:id="@+id/calculateBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calculate BP"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:padding="14dp"
+            android:layout_marginBottom="24dp"/>
+
+    </LinearLayout>
+</ScrollView>

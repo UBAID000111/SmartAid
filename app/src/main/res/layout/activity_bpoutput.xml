@@ -7,45 +7,37 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:layout_marginTop="70dp"
     android:padding="24dp">
 
     <TextView
-        android:id="@+id/bmiResultTitle"
+        android:id="@+id/bPTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your BMI Result"
+        android:layout_marginTop="70dp"
+        android:text="Your BP Result"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_marginTop="16dp"/>
+        android:textColor="@color/black" />
 
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/bmiAnimation"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:id="@+id/BPanimation"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         android:layout_marginTop="20dp"/>
 
 
     <TextView
-        android:id="@+id/bmiValueText"
+        android:id="@+id/BPValueText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BMI: 22.5"
+        android:text="BP Result: 120/80"
         android:textSize="20sp"
         android:textColor="@color/black"
         android:layout_marginTop="20dp"
         android:textStyle="bold"/>
 
-    <ImageView
-        android:id="@+id/bmiTableImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/bg_table"
-        android:scaleType="fitCenter"
-        android:layout_marginTop="24dp"/>
 
 </LinearLayout>

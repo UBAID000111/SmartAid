@@ -21,6 +21,8 @@ class EmergencyContactActivity : AppCompatActivity() {
     private lateinit var btnSave: Button
     private lateinit var btnSend: Button
 
+    private lateinit var hospitalNearby: Button
+
     private val LOCATION_PERMISSION_REQUEST_CODE = 1001
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +36,7 @@ class EmergencyContactActivity : AppCompatActivity() {
         contact3 = findViewById(R.id.etContact3)
         btnSave = findViewById(R.id.btnSave)
         btnSend = findViewById(R.id.btnSend)
+        hospitalNearby = findViewById(R.id.hospitalNearby)
 
         loadSavedContacts()
 
@@ -43,6 +46,10 @@ class EmergencyContactActivity : AppCompatActivity() {
 
         btnSend.setOnClickListener {
             checkLocationPermission()
+        }
+
+        hospitalNearby.setOnClickListener {
+            openNearbyHospitals()
         }
     }
 
@@ -66,7 +73,8 @@ class EmergencyContactActivity : AppCompatActivity() {
 
     private fun checkLocationPermission() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED) {
+            != PackageManager.PERMISSION_GRANTED
+        ) {
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
@@ -94,13 +102,15 @@ class EmergencyContactActivity : AppCompatActivity() {
 
     private fun sendEmergencyMessage() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED) {
+            != PackageManager.PERMISSION_GRANTED
+        ) {
             Toast.makeText(this, "Location permission not granted!", Toast.LENGTH_SHORT).show()
             return
         }
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             if (location != null) {
-                val message = "🚨 I am in danger!\nMy location: https://www.google.com/maps?q=${location.latitude},${location.longitude}"
+                val message =
+                    "🚨 I am in danger!\nMy location: https://www.google.com/maps?q=${location.latitude},${location.longitude}"
 
                 val contacts = listOf(
                     contact1.text.toString(),
@@ -131,6 +141,36 @@ class EmergencyContactActivity : AppCompatActivity() {
             startActivity(intent)
         } catch (e: Exception) {
             Toast.makeText(this, "WhatsApp not installed!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    private fun openNearbyHospitals() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
+            return
+        }
+
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            val gmmIntentUri = if (location != null) {
+                Uri.parse("geo:${location.latitude},${location.longitude}?q=hospitals")
+            } else {
+                Uri.parse("geo:0,0?q=hospitals")
+            }
+
+            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+            mapIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+
+            try {
+                startActivity(Intent.createChooser(mapIntent, "Choose Maps App"))
+            } catch (e: Exception) {
+                Toast.makeText(this, "No app found to open maps!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

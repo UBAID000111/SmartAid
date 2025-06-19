@@ -11,7 +11,9 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.smartaid.MainActivity
 import com.example.smartaid.R
 import com.example.smartaid.bmi.BMIInputActivity
+import com.example.smartaid.bp.BPInputActivity
 import com.example.smartaid.emergency.EmergencyContactActivity
+import com.example.smartaid.heart.HeartRateInputActivity
 import com.example.smartaid.medicine.MedicineReminderActivity
 
 class HomeActivity : AppCompatActivity() {
@@ -26,6 +28,10 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var emergencyField: CardView
 
+    private lateinit var heartRateField: CardView
+
+    private lateinit var bpField: CardView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,7 +42,8 @@ class HomeActivity : AppCompatActivity() {
         bmiChecker = findViewById(R.id.bmiChecker)
         medicineReminder = findViewById(R.id.medicineRemainder)
         emergencyField = findViewById(R.id.emergency)
-
+        heartRateField = findViewById(R.id.heartField)
+        bpField = findViewById(R.id.BPCard)
         chatbotRedirect.setOnClickListener {
             val intent3 = Intent(this, MainActivity::class.java)
             startActivity(intent3)
@@ -57,9 +64,20 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent4)
         }
 
+        heartRateField.setOnClickListener {
+            val intent6 = Intent(this, HeartRateInputActivity::class.java)
+            startActivity(intent6)
+        }
+
+
         emergencyField.setOnClickListener {
             val intent5 = Intent(this, EmergencyContactActivity::class.java)
             startActivity(intent5)
+        }
+
+        bpField.setOnClickListener {
+            val intent7 = Intent(this, BPInputActivity::class.java)
+            startActivity(intent7)
         }
     }
 }

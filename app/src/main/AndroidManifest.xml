@@ -11,8 +11,8 @@
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -23,6 +23,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartAid">
+        <activity
+            android:name=".bp.BPOutputActivity"
+            android:exported="false" />
+        <activity
+            android:name=".bp.BPInputActivity"
+            android:exported="false" />
+        <activity
+            android:name=".heart.HeartRateOutputActivity"
+            android:exported="false" />
+        <activity
+            android:name=".heart.HeartRateInputActivity"
+            android:exported="false" />
         <activity
             android:name=".emergency.EmergencyContactActivity"
             android:exported="false" />
