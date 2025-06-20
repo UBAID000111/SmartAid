@@ -34,7 +34,7 @@ class BPOutputActivity : AppCompatActivity() {
             historyDao.insert(
                 HistoryEntity(
                     type = "BP",
-                    message = "Your BP is $sysBP/$diasBP",
+                    message = "Your BP is $sysBP/$diasBP mmHg",
                     timestamp = System.currentTimeMillis()
                 )
             )

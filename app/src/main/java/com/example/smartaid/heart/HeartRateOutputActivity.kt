@@ -2,6 +2,7 @@ package com.example.smartaid.heart
 
 import com.example.smartaid.R
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -17,12 +18,15 @@ class HeartRateOutputActivity : AppCompatActivity() {
     private lateinit var heartAnimation: LottieAnimationView
     private lateinit var heartValueText: TextView
 
+    private lateinit var nameHeart : EditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_heart_rate_output)
 
         heartAnimation = findViewById(R.id.hranimation)
         heartValueText= findViewById(R.id.hrValueText)
+        nameHeart = findViewById(R.id.nameheart)
 
         val hr = intent.getFloatExtra("Heart rate Value", -1f)
 

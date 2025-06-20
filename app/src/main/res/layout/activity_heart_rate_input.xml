@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_main2"
+    android:background="@drawable/bg_gradient"
     android:padding="24dp">
 
     <LinearLayout
@@ -22,6 +22,15 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginBottom="32dp"/>
+
+        <EditText
+            android:id="@+id/nameheart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter name"
+            android:padding="16dp"
+            android:inputType="textLongMessage"
+            android:layout_marginBottom="16dp"/>
 
 
         <EditText

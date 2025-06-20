@@ -18,6 +18,7 @@ import com.example.smartaid.R
 import com.example.smartaid.auth.LoginActivity
 import com.example.smartaid.bmi.BMIInputActivity
 import com.example.smartaid.bp.BPInputActivity
+import com.example.smartaid.contact.ContactActivity
 import com.example.smartaid.emergency.EmergencyContactActivity
 import com.example.smartaid.heart.HeartRateInputActivity
 import com.example.smartaid.history.HistoryActivity
@@ -79,6 +80,8 @@ class HomeActivity : AppCompatActivity() {
                 }
                 R.id.nav_contact -> {
 
+                    val intentContact = Intent(this, ContactActivity::class.java)
+                    startActivity(intentContact)
                 }
                 R.id.nav_history -> {
 
