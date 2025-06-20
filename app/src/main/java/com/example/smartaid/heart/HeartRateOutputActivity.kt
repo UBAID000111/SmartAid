@@ -7,6 +7,10 @@ import android.widget.TextView
 import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.example.smartaid.history.AppDatabase
+import com.example.smartaid.history.HistoryEntity
+import kotlinx.coroutines.launch
 
 class HeartRateOutputActivity : AppCompatActivity() {
 
@@ -21,6 +25,19 @@ class HeartRateOutputActivity : AppCompatActivity() {
         heartValueText= findViewById(R.id.hrValueText)
 
         val hr = intent.getFloatExtra("Heart rate Value", -1f)
+
+        val db = AppDatabase.getDatabase(this)
+        val historyDao = db.historyDao()
+
+        lifecycleScope.launch{
+            historyDao.insert(
+                HistoryEntity(
+                    type = "HR",
+                    message = "Your Heart rate is $hr",
+                    timestamp = System.currentTimeMillis()
+                )
+            )
+        }
 
         if(hr == -1f){
             Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()

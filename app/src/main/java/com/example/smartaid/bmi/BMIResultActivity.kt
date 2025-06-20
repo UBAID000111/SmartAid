@@ -7,6 +7,10 @@ import android.widget.TextView
 import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.smartaid.history.AppDatabase
+import com.example.smartaid.history.HistoryEntity
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class BMIResultActivity : AppCompatActivity() {
 
@@ -22,12 +26,27 @@ class BMIResultActivity : AppCompatActivity() {
         bmiValueText = findViewById(R.id.bmiValueText)
         bmiTableImage = findViewById(R.id.bmiTableImage)
 
+
+
         val bmi = intent.getFloatExtra("BMI_VALUE", -1f)
 
         if(bmi == -1f){
             Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
             finish()
             return
+        }
+
+        val db = AppDatabase.getDatabase(this)
+        val historyDao = db.historyDao()
+
+        lifecycleScope.launch{
+            historyDao.insert(
+                HistoryEntity(
+                    type = "BMI",
+                    message = "Your BMI is $bmi",
+                    timestamp = System.currentTimeMillis()
+                )
+            )
         }
         bmiValueText.text = "BMI: %.2f".format(bmi)
 

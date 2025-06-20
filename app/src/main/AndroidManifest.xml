@@ -24,6 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartAid">
         <activity
+            android:name=".history.HistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".bp.BPOutputActivity"
             android:exported="false" />
         <activity

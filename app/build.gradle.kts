@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
+    id("kotlin-kapt")
 }
 
 android {
@@ -59,4 +60,10 @@ dependencies {
     implementation("com.airbnb.android:lottie:6.1.0")
     implementation("com.google.android.gms:play-services-location:21.0.1")
     implementation("androidx.core:core:1.16.0")
+    implementation("androidx.room:room-runtime:2.7.2")
+    kapt("androidx.room:room-compiler:2.7.2")
+    implementation("androidx.room:room-ktx:2.7.2")
+    implementation("androidx.room:room-paging:2.7.2")
+
+
 }

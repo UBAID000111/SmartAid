@@ -21,6 +21,12 @@ import com.example.smartaid.chatbot.MessageAdapter
 import com.example.smartaid.chatbot.Message
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.inputmethod.EditorInfo
+import androidx.lifecycle.lifecycleScope
+import androidx.room.util.query
+import com.example.smartaid.history.AppDatabase
+import com.example.smartaid.history.HistoryEntity
+import kotlinx.coroutines.launch
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var inputEditText: EditText
@@ -28,6 +34,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
     private lateinit var messageAdapter: MessageAdapter
+
+    private lateinit var db: AppDatabase
     private val messages = mutableListOf<Message>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         sendButton = findViewById(R.id.sendButton)
         progressBar = findViewById(R.id.progressBar)
         recyclerView = findViewById(R.id.recyclerView)
+        db = AppDatabase.getDatabase(this)
 
         val symptomMessage = intent.getStringExtra("symptomMessage")
 
@@ -84,6 +93,14 @@ class MainActivity : AppCompatActivity() {
         messages.add(Message(content, isUser))
         messageAdapter.notifyItemInserted(messages.size - 1)
         recyclerView.scrollToPosition(messages.size - 1)
+
+        if (isUser) {
+            lifecycleScope.launch {
+                db.historyDao().insert(HistoryEntity(message = content,
+                    type = "Chatbot",
+                    timestamp = System.currentTimeMillis()))
+            }
+        }
     }
 
     private fun getChatResponse(prompt: String) {

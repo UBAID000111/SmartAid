@@ -7,6 +7,10 @@ import android.widget.TextView
 import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.example.smartaid.history.AppDatabase
+import com.example.smartaid.history.HistoryEntity
+import kotlinx.coroutines.launch
 
 class BPOutputActivity : AppCompatActivity() {
 
@@ -22,6 +26,19 @@ class BPOutputActivity : AppCompatActivity() {
 
         val sysBP = intent.getFloatExtra("BP Systolic Value", -1f)
         val diasBP = intent.getFloatExtra("BP Diastolic Value", -1f)
+
+        val db = AppDatabase.getDatabase(this)
+        val historyDao = db.historyDao()
+
+        lifecycleScope.launch{
+            historyDao.insert(
+                HistoryEntity(
+                    type = "BP",
+                    message = "Your BP is $sysBP/$diasBP",
+                    timestamp = System.currentTimeMillis()
+                )
+            )
+        }
 
         if(sysBP == -1f || diasBP == -1f){
             Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
